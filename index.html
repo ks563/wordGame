@@ -19,8 +19,8 @@
 
 <body>
     <div class="jumbotron">
-        <h1 class="text-center">Word Guess Game</h1>
-        <h2 class="text-center">Guess the word before you run out of tries!</h2>
+        <h1 class="text-center">What's the pastry!</h1>
+        <h2 class="text-center">Guess the pastry before the cookie crumbles...</h2>
     </div>
 
     <div class="row">
@@ -28,7 +28,19 @@
             <div class="card mb-2">
                 <h3 class="card-header text-center">Current Word</h3>
                 <div class="card-body text-center">
-                    <h1 id="current-word"> </h1> <!-- should display length of word-->
+                    <h1 id="current-word"> </h1>
+                    <!-- should display length of word with underscores then replace with correct letters as guessed-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2">
+                <h3 class="card-header text-center">Number of Guesses Remaining</h3>
+                <!-- remainingGuesses should appear here-->
+                <div class="card-body text-center">
                 </div>
             </div>
         </div>
@@ -40,6 +52,17 @@
                 <h3 class="card-header text-center">Letters Guessed</h3>
                 <!-- guessedLetters[] should appear here-->
                 <div class="card-body text-center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2">
+                <h3 class="card-header text-center">Wins</h3>
+                <div class="card-body text-center">
+                    <h1 id="result"></h1>
                 </div>
             </div>
         </div>
@@ -57,12 +80,10 @@
         var gameStarted = false;
         var gameFinished = false;
 
+       document.onkeyup = function () {
 
 
-        $(document).ready(function () {
-
-
-        });
+        };
 
 
     </script>
