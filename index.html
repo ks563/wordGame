@@ -8,6 +8,7 @@
     <!-- Added link to the jQuery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -72,13 +73,28 @@
     <script type="text/javascript">
         var wordSelection = ["sablet", "canele", "eclair", "financier", "dacquoise", "spritz", "macaron", "mendiant", "souffle", "beignet"];
         var wordIndex;
-        var maxTries = 8; // how many gueeses the player has to guess the word
+        var maxTries = 8; // how many guesses the player has to guess the word
         var guessedLetters = []; // the letters the player has guessed
         var wordAttempt = []; // where the guessed word will be built
         var remainingGuesses = 0; //how many guesses remain - will use an iterater
         var wins = 0;
         var gameStarted = false;
         var gameFinished = false;
+
+        function resetGame () {
+            remainingGuesses = maxTries;
+            gameStarted = false;
+
+            wordIndex = math.floor(math.random() * (wordSelection.length));
+
+            gussedLetters = [];
+            wordAttempt = [];
+
+            for (var i = 0; i < wordSelection[wordIndex].length; i++){
+                wordAttempt.push("_");
+            }
+            
+        }
 
        document.onkeyup = function () {
 
