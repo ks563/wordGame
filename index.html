@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Trigger Clicked</title>
+    <title>word game</title>
 
     <!-- Added link to the jQuery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,6 +23,28 @@
         <h2 class="text-center">Guess the word before you run out of tries!</h2>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2">
+                <h3 class="card-header text-center">Current Word</h3>
+                <div class="card-body text-center">
+                    <h1 id="current-word"> </h1> <!-- should display length of word-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-2">
+                <h3 class="card-header text-center">Letters Guessed</h3>
+                <!-- guessedLetters[] should appear here-->
+                <div class="card-body text-center">
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script type="text/javascript">
         var wordSelection = ["sablet", "canele", "eclair", "financier", "dacquoise", "spritz", "macaron", "mendiant", "souffle", "beignet"];
@@ -36,8 +58,9 @@
         var gameFinished = false;
 
 
+
         $(document).ready(function () {
-            var gamePick; 
+
 
         });
 
