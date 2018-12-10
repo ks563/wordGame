@@ -29,8 +29,7 @@
             <div class="card mb-2">
                 <h3 class="card-header text-center">Current Word</h3>
                 <div class="card-body text-center">
-                    <h1 id="current-word"> </h1>
-                    <!-- should display length of word with underscores then replace with correct letters as guessed-->
+                    <h1 id="current-word"> </h1> <!-- should display length of word with underscores then replace with correct letters as guessed-->
                 </div>
             </div>
         </div>
@@ -40,7 +39,7 @@
         <div class="col-md-12">
             <div class="card mb-2">
                 <h3 class="card-header text-center">Number of Guesses Remaining</h3>
-                <!-- remainingGuesses should appear here-->
+                <h2 id="remaining-guesses"></h2><!-- remainingGuesses should appear here-->
                 <div class="card-body text-center">
                 </div>
             </div>
@@ -51,7 +50,7 @@
         <div class="col-md-12">
             <div class="card mb-2">
                 <h3 class="card-header text-center">Letters Guessed</h3>
-                <!-- guessedLetters[] should appear here-->
+                <h2 id="letters-guessed"> </h2> <!-- guessedLetters[] should appear here-->
                 <div class="card-body text-center">
                 </div>
             </div>
@@ -63,7 +62,7 @@
             <div class="card mb-2">
                 <h3 class="card-header text-center">Wins</h3>
                 <div class="card-body text-center">
-                    <h1 id="result"></h1>
+                    <h1 id="total-wins"></h1>
                 </div>
             </div>
         </div>
@@ -93,11 +92,15 @@
             for (var i = 0; i < wordSelection[wordIndex].length; i++){
                 wordAttempt.push("_");
             }
-            
+
+            updateDisplay();   
+        };
+
+        function updateDisplay() {
+
         }
 
        document.onkeyup = function () {
-
 
         };
 
