@@ -29,7 +29,8 @@
             <div class="card mb-2">
                 <h3 class="card-header text-center">Current Word</h3>
                 <div class="card-body text-center">
-                    <h1 id="current-word"> </h1> <!-- should display length of word with underscores then replace with correct letters as guessed-->
+                    <h1 id="current-word"> </h1>
+                    <!-- should display length of word with underscores then replace with correct letters as guessed-->
                 </div>
             </div>
         </div>
@@ -80,37 +81,38 @@
         var gameStarted = false;
         var gameFinished = false;
 
-        function resetGame () {
+        function resetGame() {
 
             //sets remaining guesses to max tries to give player max amount of tries
             remainingGuesses = maxTries;
             //game has not been started
             gameStarted = false;
-            
+
             //selects new word from wordSelection
             wordIndex = math.floor(math.random() * (wordSelection.length));
-            
+
             //empties arrays and previous guesses attempts
             gussedLetters = [];
             wordAttempt = [];
 
             //sets _ for each letter in new selected word
-            for (var i = 0; i < wordSelection[wordIndex].length; i++){
+            for (var i = 0; i < wordSelection[wordIndex].length; i++) {
                 wordAttempt.push("_");
             }
 
-            updateDisplay();   
+            updateDisplay();
         };
 
         function updateDisplay() {
 
+
         }
 
-       document.onkeyup = function () {
-
-
-        };
-
+        document.onkeyup = function () {
+         
+        
+             
+            };
 
     </script>
 
