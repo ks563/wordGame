@@ -18,3 +18,13 @@ loop to track and display letters previously guessed
 
 var Wins - tracks wins ++
 var Losses tracks losses ++
+
+game play
+
+word is selected
+ player guesses letter
+ letter is registered in attempted guesses
+ if letter is in the selected word it pushes to wordAttempt
+ remaining guesses is decreased by one
+ loops though as player guesses again
+ 

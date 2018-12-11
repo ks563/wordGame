@@ -81,14 +81,20 @@
         var gameFinished = false;
 
         function resetGame () {
+
+            //sets remaining guesses to max tries to give player max amount of tries
             remainingGuesses = maxTries;
+            //game has not been started
             gameStarted = false;
-
+            
+            //selects new word from wordSelection
             wordIndex = math.floor(math.random() * (wordSelection.length));
-
+            
+            //empties arrays and previous guesses attempts
             gussedLetters = [];
             wordAttempt = [];
 
+            //sets _ for each letter in new selected word
             for (var i = 0; i < wordSelection[wordIndex].length; i++){
                 wordAttempt.push("_");
             }
@@ -101,6 +107,7 @@
         }
 
        document.onkeyup = function () {
+
 
         };
 
