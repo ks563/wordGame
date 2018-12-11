@@ -8,6 +8,15 @@ var wins = 0;
 var gameStarted = false;
 var gameFinished = false;
 
+
+function updateDisplay() {
+    $("#current-word").text(wordSelection);
+    $("#remaining-guesses").text(remainingGuesses);
+    $("#letters-guessed").text(guessedLetters);
+    $("#current-word").text(wordAttempt);
+
+};
+
 function resetGame() {
 
     //sets remaining guesses to max tries to give player max amount of tries
@@ -32,16 +41,7 @@ function resetGame() {
     updateDisplay();
 };
 
-function updateDisplay() {
-    $("#current-word").text(wordSelection);
-    $("#remaining-guesses").text(remainingGuesses);
-    $("#letters-guessed").text(guessedLetters);
-    $("#current-word").text(wordAttempt);
-
-}
 
 document.onkeyup = function () {
-
-
-
+    
 };
