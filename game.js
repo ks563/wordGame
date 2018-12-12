@@ -4,7 +4,7 @@ var maxTries = 8; // how many guesses the player has to guess the word
 var guessedLetters = []; // the letters the player has guessed
 var wordAttempt = []; // where the guessed word will be built
 var remainingGuesses = 0; //how many guesses remain - will use an iterater
-var playerGuess;
+var playerGuess = "";
 var wordArray = [];
 var wins = 0;
 var gameStarted = false;
@@ -27,7 +27,7 @@ function resetGame() {
     gameStarted = false;
 
     //selects new word from wordSelection
-    wordIndex = Math.floor(Math.random() * (wordSelection.length));
+    // wordIndex = Math.floor(Math.random() * (wordSelection.length));
     
     console.log(wordIndex);
 
@@ -39,31 +39,36 @@ function resetGame() {
     for (var i = 0; i < wordSelection[wordIndex].length; i++) {
         wordAttempt.push("_");
     };
-    console.log(resetGame);
+    // console.log(resetGame);
     updateDisplay();
 };
 
-resetGame();
+function checkLetter(){
+    wordArray =  wordSelection[0];
+    wordArray.split("");
+    for (var i =0; i < wordArray.length; i++){
 
-function checkLetter(string){
-    wordArray = wordSelection[wordIndex].split("");
-    for (var i =0; i < wordArray.length; i++);
-    
-
-    wordArray.splice();
+    if (playerGuess === wordArray[i])
+        wordArray.splice(i, 1, playerGuess); 
+        
+    }
 };
 
-document.onkeyup = function (event) {
-    // initalizes game if there are remaining guesses and starts the game
-    function userGuess(event){
-        if (remainingGuesses > 0);
-        if (!gameStarted){
-            gameStarted = true;
-        }
-
-        playerGuess = event.key;
-        //pushes player guess to guessedLetters array
-        guessedLetters.push(playerGuess);
+resetGame();
+ // initalizes game if there are remaining guesses and starts the game
+function startGame(event) {
+    if (remainingGuesses > 0);
+    if (!gameStarted){
+        gameStarted = true;
     };
 
 };
+
+document.onkeypress = function (event) {
+        playerGuess = event.key;
+        startGame();
+        checkLetter();
+        // pushes player guess to guessedLetters array
+        // guessedLetters.push(playerGuess);
+    };
+
