@@ -27,7 +27,7 @@ function resetGame() {
     gameStarted = false;
 
     //selects new word from wordSelection
-    // wordIndex = Math.floor(Math.random() * (wordSelection.length));
+    wordIndex = Math.floor(Math.random() * (wordSelection.length));
     
     console.log(wordIndex);
 
@@ -44,13 +44,14 @@ function resetGame() {
 };
 
 function checkLetter(){
-    wordArray =  wordSelection[0];
-    wordArray.split("");
+    wordArray = [wordSelection[wordIndex]];
+    wordArray.toString().split(" ");
     for (var i =0; i < wordArray.length; i++){
 
-    if (playerGuess === wordArray[i])
-        wordArray.splice(i, 1, playerGuess); 
-        
+    if (playerGuess === wordArray[i]) {
+        wordArray.splice(i, 1, playerGuess); }
+    else; 
+        guessedLetters.push(playerGuess);
     }
 };
 
@@ -68,7 +69,5 @@ document.onkeypress = function (event) {
         playerGuess = event.key;
         startGame();
         checkLetter();
-        // pushes player guess to guessedLetters array
-        // guessedLetters.push(playerGuess);
     };
 
