@@ -46,12 +46,18 @@ function resetGame() {
 function checkLetter(){
     wordArray = [wordSelection[wordIndex]];
     wordArray.toString().split(" ");
-    for (var i =0; i < wordArray.length; i++){
+    for (var j =0; j < wordArray.length; j++){
 
-    if (playerGuess === wordArray[i]) {
-        wordArray.splice(i, 1, playerGuess); }
+    if (playerGuess === wordArray[j]) {
+        wordArray.splice(j, 1, playerGuess); }
     else; 
         guessedLetters.push(playerGuess);
+    }
+};
+
+function guessCounter() {
+    for (var k; k < maxTries; k++){
+        //when playerGuess occurs, -- from remainingGuesses
     }
 };
 
