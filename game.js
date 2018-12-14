@@ -8,13 +8,37 @@ var playerGuess = "";
 var wordArray;
 var currentWord = null;
 var matchedLetters = [];
-var wins = 0;
 var gameStarted = false;
 var gameFinished = false;
 
 
-function resetGame() {
+$(document).ready(setUpGame);
 
+document.onkeyup = function (event) {
+    playerGuess = String.fromCharCode(event.which).toLowerCase();
+    updateDisplay(playerGuess);
+}
+
+// figure out when to call .onpageload/.ondocumentload 
+function setUpGame() {
+    resetGame();
+    currentWord = wordSelection[wordIndex];
+    wordArray = currentWord.toString().split("");
+    updateWordAttempt();
+    displayGuesses();
+    startGame();
+}
+
+function updateDisplay(playerGuess) {
+    if (remainingGuesses === 0) {
+        checkMatchedLetter(playerGuess);
+        checkIncorrectLetter(playerGuess);
+        displayGuesses();
+        updateWordAttempt();
+    }
+}
+
+function resetGame() {
     //sets remaining guesses to max tries to give player max amount of tries
     remainingGuesses = maxTries;
     //game has not been started
@@ -31,27 +55,24 @@ function resetGame() {
 
     //sets _ for each letter in new selected word
     for (var i = 0; i < wordSelection[wordIndex].length; i++) {
-        wordAttempt.push("_");
-    };
+        wordAttempt.push(" ", "_");
+    }
     // console.log(resetGame);
-    updateDisplay();
-};
+}
 
-// figure out when to call .onpageload/.ondocumentload 
-function setUpGame(); {
-    currentWord = wordSelection[wordIndex];
-    wordArray = currentWord.toString().split("");
-    updateWordAttempt();
-    displayGuesses();
-};
-
-function updateDisplay(playerGuess) {
-    if (remainingGuesses === 0) {
-        resetGame();
-        checkMatchedLetter(playerGuess);
-        checkIncorrectLetter(playerGuess);
-    };
-};
+function updateWordAttempt() {
+    var wordDisplay = "";
+    for (var j = 0; j < wordArray.length; j++) {
+        if (matchedLetters.indexOf(wordArray[j]) !== -1) {
+            wordDisplay += wordArray[j];
+        }
+        else {
+            wordDisplay += (" ", "_");
+        }
+        wordAttempt= wordDisplay;
+    }
+    $("#current-word").text(wordAttempt);
+}
 
 function checkMatchedLetter(playerGuess) {
     for (var j = 0; j < wordArray.length; j++) {
@@ -59,48 +80,31 @@ function checkMatchedLetter(playerGuess) {
         if (playerGuess === wordArray[j] && matchedLetters.indexOf(playerGuess) === -1) {
             wordArray.splice(j, 1, playerGuess);
             matchedLetters.push(playerGuess);
-        };
-    };
-};
+        }
+    }
+}
 
 function checkIncorrectLetter(playerGuess) {
     if (wordArray.indexOf(playerGuess) === -1 && guessedLetters.indexOf(playerGuess) === -1) {
         guessedLetters.push(playerGuess);
         remainingGuesses--;
-    };
-};
-
-function updateWordAttempt() {
-    var wordDisplay = "";
-    for (var j = 0; j < wordArray.length; j++){
-        if (matchedLetters.indexOf(wordArray[j]) !== -1){
-            wordDisplay += wordArray[j];
-        }
-        else {
-            wordDisplay += "&nbsp;_&nbsp;";
-        };
-    };
-    $("#current-word").text(wordDisplay);
-};
+    }
+}
 
 function displayGuesses() {
     $("#remaining-guesses").text(remainingGuesses);
-    $("#letters-guessed").text(guessedLetters.join(", "));
-};
-
-
-resetGame();
-// initalizes game if there are remaining guesses and starts the game
-
+    var guessedLettersOutput = guessedLetters.join(", ")
+    $("#letters-guessed").append(guessedLettersOutput);  
+    console.log(guessedLettersOutput);
+}
 function startGame(event) {
-
     if (!gameStarted) {
         gameStarted = true;
-    };
+    }
+}
 
-};
-
-document.onkeypress = function (event) {
-    playerGuess = String.fromCharCode(event.which).toLowerCase();
-    updateDisplay(playerGuess);
-};
+function endGame() {
+    if(remainingGuesses === 0 && wordAttempt == wordArray){
+        alert("You have won!");
+    }
+}
