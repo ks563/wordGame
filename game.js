@@ -19,7 +19,7 @@ document.onkeyup = function (event) {
     updateDisplay(playerGuess);
 }
 
-// figure out when to call .onpageload/.ondocumentload 
+// sets up game and displays guesses starts game
 function setUpGame() {
     resetGame();
     currentWord = wordSelection[wordIndex];
@@ -29,13 +29,14 @@ function setUpGame() {
     startGame();
 }
 
+//checks guessed letters, displays guesses updates attempted word
+// was not running before because i had an if statement so this would only run if remainingGuesses === 0 
 function updateDisplay(userGuess) {
-    if (remainingGuesses === 0) {
         checkMatchedLetter(playerGuess);
         checkIncorrectLetter(playerGuess);
         displayGuesses();
         updateWordAttempt();
-    }
+    
 }
 
 function resetGame() {
@@ -45,8 +46,6 @@ function resetGame() {
     gameStarted = false;
     //selects new word from wordSelection
     wordIndex = Math.floor(Math.random() * (wordSelection.length));
-
-    // console.log(wordIndex);
 
     //empties arrays and previous guesses attempts
     guessedLetters = [];
@@ -61,16 +60,17 @@ function resetGame() {
 
 function checkMatchedLetter(userGuess) {
     for (var j = 0; j < wordArray.length; j++) {
-
+        // if the keyed letter is in the word array and is not in matched letters it will push to matched letters
         if (playerGuess === wordArray[j] && matchedLetters.indexOf(playerGuess) === -1) {
             wordArray.splice(j, 1, playerGuess);
             matchedLetters.push(playerGuess);
-            console.log(matchedLetters);
+            //console.log(matchedLetters);
         }
     }
 }
 
 function checkIncorrectLetter(userGuess) {
+    // if the keyed letter is not in the word array and is not in matched letters it will push to guessedLetters and declimate remaining guesses
     if (wordArray.indexOf(playerGuess) === -1 && guessedLetters.indexOf(playerGuess) === -1) {
         guessedLetters.push(playerGuess);
         remainingGuesses--;
@@ -94,7 +94,7 @@ function updateWordAttempt() {
 function displayGuesses() {
     $("#remaining-guesses").text(remainingGuesses);
     var guessedLettersOutput = guessedLetters.join(", ")
-    $("#letters-guessed").append(guessedLettersOutput);  
+    $("#letters-guessed").text(guessedLettersOutput);  
     console.log(guessedLettersOutput);
 }
 function startGame(event) {
