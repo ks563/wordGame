@@ -29,7 +29,7 @@ function setUpGame() {
     startGame();
 }
 
-function updateDisplay(playerGuess) {
+function updateDisplay(userGuess) {
     if (remainingGuesses === 0) {
         checkMatchedLetter(playerGuess);
         checkIncorrectLetter(playerGuess);
@@ -43,7 +43,6 @@ function resetGame() {
     remainingGuesses = maxTries;
     //game has not been started
     gameStarted = false;
-
     //selects new word from wordSelection
     wordIndex = Math.floor(Math.random() * (wordSelection.length));
 
@@ -60,6 +59,24 @@ function resetGame() {
     // console.log(resetGame);
 }
 
+function checkMatchedLetter(userGuess) {
+    for (var j = 0; j < wordArray.length; j++) {
+
+        if (playerGuess === wordArray[j] && matchedLetters.indexOf(playerGuess) === -1) {
+            wordArray.splice(j, 1, playerGuess);
+            matchedLetters.push(playerGuess);
+            console.log(matchedLetters);
+        }
+    }
+}
+
+function checkIncorrectLetter(userGuess) {
+    if (wordArray.indexOf(playerGuess) === -1 && guessedLetters.indexOf(playerGuess) === -1) {
+        guessedLetters.push(playerGuess);
+        remainingGuesses--;
+    }
+}
+
 function updateWordAttempt() {
     var wordDisplay = "";
     for (var j = 0; j < wordArray.length; j++) {
@@ -72,23 +89,6 @@ function updateWordAttempt() {
         wordAttempt= wordDisplay;
     }
     $("#current-word").text(wordAttempt);
-}
-
-function checkMatchedLetter(playerGuess) {
-    for (var j = 0; j < wordArray.length; j++) {
-
-        if (playerGuess === wordArray[j] && matchedLetters.indexOf(playerGuess) === -1) {
-            wordArray.splice(j, 1, playerGuess);
-            matchedLetters.push(playerGuess);
-        }
-    }
-}
-
-function checkIncorrectLetter(playerGuess) {
-    if (wordArray.indexOf(playerGuess) === -1 && guessedLetters.indexOf(playerGuess) === -1) {
-        guessedLetters.push(playerGuess);
-        remainingGuesses--;
-    }
 }
 
 function displayGuesses() {
