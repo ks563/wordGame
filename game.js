@@ -13,14 +13,6 @@ var gameStarted = false;
 var gameFinished = false;
 
 
-function updateDisplay() {
-    $("#current-word").text(wordSelection);
-    $("#remaining-guesses").text(remainingGuesses);
-    $("#letters-guessed").text(guessedLetters);
-    $("#current-word").text(wordAttempt);
-
-};
-
 function resetGame() {
 
     //sets remaining guesses to max tries to give player max amount of tries
@@ -45,22 +37,20 @@ function resetGame() {
     updateDisplay();
 };
 
+// figure out when to call .onpageload/.ondocumentload 
 function setUpGame(); {
     currentWord = wordSelection[wordIndex];
     wordArray = currentWord.toString().split("");
-    // update wordAttempt
-    // update guesses
+    updateWordAttempt();
+    displayGuesses();
 };
 
-function updateDisplay() {
+function updateDisplay(playerGuess) {
     if (remainingGuesses === 0) {
         resetGame();
-        checkMatchedLetter();
-        checkIncorrectLetter();
+        checkMatchedLetter(playerGuess);
+        checkIncorrectLetter(playerGuess);
     };
-
-    // update wordAttempt
-    // check if user won
 };
 
 function checkMatchedLetter(playerGuess) {
@@ -71,28 +61,33 @@ function checkMatchedLetter(playerGuess) {
             matchedLetters.push(playerGuess);
         };
     };
-}
+};
 
 function checkIncorrectLetter(playerGuess) {
     if (wordArray.indexOf(playerGuess) === -1 && guessedLetters.indexOf(playerGuess) === -1) {
         guessedLetters.push(playerGuess);
+        remainingGuesses--;
     };
 };
 
 function updateWordAttempt() {
-    var wordDisplay = "":
+    var wordDisplay = "";
     for (var j = 0; j < wordArray.length; j++){
-
-    }
-
-}
-
-
-function guessCounter() {
-    for (var k; k < maxTries; k++) {
-        //when playerGuess occurs, -- from remainingGuesses
+        if (matchedLetters.indexOf(wordArray[j]) !== -1){
+            wordDisplay += wordArray[j];
+        }
+        else {
+            wordDisplay += "&nbsp;_&nbsp;";
+        };
     };
+    $("#current-word").text(wordDisplay);
 };
+
+function displayGuesses() {
+    $("#remaining-guesses").text(remainingGuesses);
+    $("#letters-guessed").text(guessedLetters.join(", "));
+};
+
 
 resetGame();
 // initalizes game if there are remaining guesses and starts the game
@@ -106,7 +101,6 @@ function startGame(event) {
 };
 
 document.onkeypress = function (event) {
-    playerGuess = event.key;
-    startGame();
-    checkLetter();
+    playerGuess = String.fromCharCode(event.which).toLowerCase();
+    updateDisplay(playerGuess);
 };
