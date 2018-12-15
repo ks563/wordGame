@@ -1,7 +1,7 @@
 var wordSelection = ["sablet", "canele", "eclair", "financier", "dacquoise", "spritz", "macaron", "mendiant", "souffle", "beignet"];
 var wordIndex = 0;
 var maxTries = 12; // how many guesses the player has to guess the word
-var guessedLetters = []; // the letters the player has guessed
+var guessedLetter; // the letters the player has guessed
 var wordAttempt = []; // where the guessed word will be built
 var remainingGuesses = 0; //how many guesses remain - will use an iterater
 var playerGuess = "";
@@ -36,6 +36,7 @@ function updateDisplay(userGuess) {
         checkIncorrectLetter(playerGuess);
         displayGuesses();
         updateWordAttempt();
+        reloadGame();
     
 }
 
@@ -78,6 +79,7 @@ function checkIncorrectLetter(userGuess) {
 }
 
 function updateWordAttempt() {
+    // pushes letters to wordAttempt as they are guessed
     var wordDisplay = "";
     for (var j = 0; j < wordArray.length; j++) {
         if (matchedLetters.indexOf(wordArray[j]) !== -1) {
@@ -92,19 +94,23 @@ function updateWordAttempt() {
 }
 
 function displayGuesses() {
+    // displays guesses in html - this works now that there's not an if statement in the function that calls this function
     $("#remaining-guesses").text(remainingGuesses);
     var guessedLettersOutput = guessedLetters.join(", ")
     $("#letters-guessed").text(guessedLettersOutput);  
     console.log(guessedLettersOutput);
 }
 function startGame(event) {
+    // sets gameStarted to true
     if (!gameStarted) {
         gameStarted = true;
     }
 }
 
-function endGame() {
-    if(remainingGuesses === 0 && wordAttempt == wordArray){
-        alert("You have won!");
+function reloadGame() {
+    // if there are no more guesses or the word is guessed correct - alert that you hav ewon the game and reload the page
+    if(remainingGuesses === 0 || wordAttempt == currentWord){
+        alert("Grab yourself a cookie, you won!");
+        location.reload();
     }
 }
