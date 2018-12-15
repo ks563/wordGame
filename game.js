@@ -109,6 +109,7 @@ function startGame(event) {
 
 function reloadGame() {
     // if there are no more guesses or the word is guessed correct - alert that you hav ewon the game and reload the page
+    // it doesn't display the last letter before alerting
     if(remainingGuesses === 0 || wordAttempt == currentWord){
         alert("Grab yourself a cookie, you won!");
         location.reload();
