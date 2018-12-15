@@ -6,6 +6,7 @@ var wordAttempt = []; // where the guessed word will be built
 var remainingGuesses = 0; //how many guesses remain - will use an iterater
 var playerGuess = "";
 var wordArray;
+// var guessedLettersOutput;
 var currentWord = null;
 var matchedLetters = [];
 var gameStarted = false;
@@ -52,7 +53,7 @@ function resetGame() {
     guessedLetters = [];
     wordAttempt = [];
 
-    //sets _ for each letter in new selected word
+    //sets _ for each letter in new selected word, won't separate _'s with a space
     for (var i = 0; i < wordSelection[wordIndex].length; i++) {
         wordAttempt.push(" ", "_");
     }
@@ -96,9 +97,10 @@ function updateWordAttempt() {
 function displayGuesses() {
     // displays guesses in html - this works now that there's not an if statement in the function that calls this function
     $("#remaining-guesses").text(remainingGuesses);
-    var guessedLettersOutput = guessedLetters.join(", ")
-    $("#letters-guessed").text(guessedLettersOutput);  
+    var guessedLettersOutput = guessedLetters.join(", ");
     console.log(guessedLettersOutput);
+    $("#letters-guessed").text(guessedLettersOutput);  
+    
 }
 function startGame(event) {
     // sets gameStarted to true
@@ -110,8 +112,14 @@ function startGame(event) {
 function reloadGame() {
     // if there are no more guesses or the word is guessed correct - alert that you hav ewon the game and reload the page
     // it doesn't display the last letter before alerting
-    if(remainingGuesses === 0 || wordAttempt == currentWord){
+    if(wordAttempt == currentWord){
         alert("Grab yourself a cookie, you won!");
         location.reload();
+    }
+    else{
+        if(remainingGuesses === 0){
+            alert("You lost! No cookie for you!");
+            location.reload();
+        }
     }
 }
