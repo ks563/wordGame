@@ -16,6 +16,8 @@ body, html {
 
   .jumbotron{
     font-family: 'Cardo', serif;
+    padding-bottom: 3%;
+    padding-top: 3%;
 }
 
 .row{

@@ -2,11 +2,10 @@ var wordSelection = ["sablet", "canele", "eclair", "financier", "dacquoise", "sp
 var wordIndex = 0;
 var maxTries = 12; // how many guesses the player has to guess the word
 var guessedLetter; // the letters the player has guessed
-var wordAttempt = []; // where the guessed word will be built
+var wordAttempt; // where the guessed word will be built
 var remainingGuesses = 0; //how many guesses remain - will use an iterater
 var playerGuess = "";
 var wordArray;
-// var guessedLettersOutput;
 var currentWord = null;
 var matchedLetters = [];
 var gameStarted = false;
@@ -20,6 +19,7 @@ document.onkeyup = function (event) {
     updateDisplay(playerGuess);
 }
 
+// when resetting game manually doing command R it puts a [ as a letter guess but not if you hit the refresh button in your browser
 // sets up game and displays guesses starts game
 function setUpGame() {
     resetGame();
@@ -113,11 +113,13 @@ function reloadGame() {
     // if there are no more guesses or the word is guessed correct - alert that you hav ewon the game and reload the page
     // it doesn't display the last letter before alerting
     if(wordAttempt == currentWord){
+        document.getElementById("bell");
         alert("Grab yourself a cookie, you won!");
         location.reload();
     }
     else{
         if(remainingGuesses === 0){
+            document.getElementById("bell").play();
             alert("You lost! No cookie for you!");
             location.reload();
         }
