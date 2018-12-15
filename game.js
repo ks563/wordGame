@@ -19,7 +19,7 @@ document.onkeyup = function (event) {
     updateDisplay(playerGuess);
 }
 
-// when resetting game manually doing command R it puts a [ as a letter guess but not if you hit the refresh button in your browser
+// when resetting game manually doing command R it puts a [ as a letter guess in guessedLetters but not if you hit the refresh button in your browser
 // sets up game and displays guesses starts game
 function setUpGame() {
     resetGame();
