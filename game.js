@@ -33,12 +33,12 @@ function setUpGame() {
 //checks guessed letters, displays guesses updates attempted word
 // was not running before because i had an if statement so this would only run if remainingGuesses === 0 
 function updateDisplay(userGuess) {
-        checkMatchedLetter(playerGuess);
-        checkIncorrectLetter(playerGuess);
-        displayGuesses();
-        updateWordAttempt();
-        reloadGame();
-    
+    checkMatchedLetter(playerGuess);
+    checkIncorrectLetter(playerGuess);
+    displayGuesses();
+    updateWordAttempt();
+    reloadGame();
+
 }
 
 function resetGame() {
@@ -89,7 +89,7 @@ function updateWordAttempt() {
         else {
             wordDisplay += (" ", "_");
         }
-        wordAttempt= wordDisplay;
+        wordAttempt = wordDisplay;
     }
     $("#current-word").text(wordAttempt);
 }
@@ -99,8 +99,8 @@ function displayGuesses() {
     $("#remaining-guesses").text(remainingGuesses);
     var guessedLettersOutput = guessedLetters.join(", ");
     console.log(guessedLettersOutput);
-    $("#letters-guessed").text(guessedLettersOutput);  
-    
+    $("#letters-guessed").text(guessedLettersOutput);
+
 }
 function startGame(event) {
     // sets gameStarted to true
@@ -112,13 +112,13 @@ function startGame(event) {
 function reloadGame() {
     // if there are no more guesses or the word is guessed correct - alert that you hav ewon the game and reload the page
     // it doesn't display the last letter before alerting
-    if(wordAttempt == currentWord){
+    if (wordAttempt == currentWord) {
         document.getElementById("bell");
         alert("Grab yourself a cookie, you won!");
         location.reload();
     }
-    else{
-        if(remainingGuesses === 0){
+    else {
+        if (remainingGuesses === 0) {
             document.getElementById("bell").play();
             alert("You lost! No cookie for you!");
             location.reload();

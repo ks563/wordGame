@@ -1,30 +1,22 @@
 # wordGame
 
-on key event to begin game
+**Word Game**
+===================================================================
 
-display word as _ _ _ _ _
-    from word index (array of words)
-    generate random pick from this array
-    reveal word as guesses are made
+**Word Game** is a web-based trivia app that allows you to test your word knowledge in a hangman-type game. The pastry theme gives it a fun twist and leaves you hungry for more!
 
-function to track number of guesses remaining
-    set maxTries
-    if guess greater than 0 continue game
-    if less than zero end game
+https://ks563.github.io/wordGame/
 
-loop to track and display letters previously guessed
-    .getElementIdBy
-    .append
+The application is built with:
+===================================================================
+- Javascript
+- HTML
+- CSS
+- Bootstrap
 
-var Wins - tracks wins ++
-var Losses tracks losses ++
+**How it works:**
+===================================================================
 
-game play
+The game begins when the page loads. To make a guess, press a letter key on your keyboard. You can only guess a letter once. Incorrect guesses are counted against you and take a turn. Duplicate guesses are not counted against you. Your remaining guesses are tracked on the screen, along with the incorrected guesses, and the correct guesses as the word is built. The game is over when the word is guessed correctly or when the number of guesses is zero.
 
-word is selected
- player guesses letter
- letter is registered in attempted guesses
- if letter is in the selected word it pushes to wordAttempt
- remaining guesses is decreased by one
- loops though as player guesses again
- 
+
